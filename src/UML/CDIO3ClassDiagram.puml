@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam groupInheritance 2
+
+abstract class Field
+class Prison
+class Start
+class Chance{
+    chanceCard:ChanceCard[]
+    ChanceCard drawCard():
+}
+class GoToPrison
+class Parking
+class Plot{
+    color:String
+    price:int
+}
+
+Field <|-- Prison
+Field <|-- Start
+Field <|-- Chance
+Field <|-- GoToPrison
+Field <|-- Parking
+Field <|-- Plot
+
+
+@enduml
