@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+[->GameController:Start
+GameController -> Player:Create
+Player -> Die:Create
+loop win==false
+    alt roll dice
+        Player -> Die:Roll
+    else Buy field
+        Player -> Bank
+end
+Player -> GameController:Win Message
+
+@enduml

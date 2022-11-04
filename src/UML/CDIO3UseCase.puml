@@ -1,0 +1,6 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+Player -> (Play game)
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+loop win==False
+    Player -> System: Choose action
+    alt player choose roll die and is not in jail
+        Player -> System: Roll die
+    else In jail and uses get out of jail card
+        Player -> System: Give card
+        Player -> System: Roll die
+    else In jail and pay
+        Player -> System: Give money
+        Player -> System: Roll die
+    end
+end
+
+@enduml

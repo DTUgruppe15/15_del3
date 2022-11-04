@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam groupInheritance 2
+
+abstract class Field
+class Prison
+class Start
+class Chance
+class GoToPrison
+class Parking
+class Plot{
+    color
+    price
+}
+
+Field <|-- Prison
+Field <|-- Start
+Field <|-- Chance
+Field <|-- GoToPrison
+Field <|-- Parking
+Field <|-- Plot
+
+class UI{
+    gui
+}
+class Player{
+
+}
+class Account{
+    money
+}
+class Die{
+    faceValue
+    amountOfFaces
+}
+class Game
+
+Player "1"--"2" Die
+Player "1"--"1" Account
+Game "1"--"2..4" Player
+Game "1"--"24" Field
+Game "1"--"1" UI
+
+class Languages{
+
+}
+
+@enduml

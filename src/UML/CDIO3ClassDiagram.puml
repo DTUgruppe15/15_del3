@@ -6,14 +6,14 @@ abstract class Field
 class Prison
 class Start
 class Chance{
-    chanceCard:ChanceCard[]
-    ChanceCard drawCard():
+    -chanceCard:ChanceCard[]
+    +drawCard():ChanceCard
 }
 class GoToPrison
 class Parking
 class Plot{
-    color:String
-    price:int
+    -color:String
+    -price:int
 }
 
 Field <|-- Prison
@@ -22,6 +22,42 @@ Field <|-- Chance
 Field <|-- GoToPrison
 Field <|-- Parking
 Field <|-- Plot
+
+class UIController{
+    -gui:Gui
+}
+class Player{
+    -die1:Die
+    -die2:Die
+    -account:Account
+    +rollDice():void
+    +getDiceSum():int
+}
+class Account{
+    -money:int
+}
+class Die{
+    -faceValue:int
+    -amountOfFaces:int
+    +rollDie():void
+}
+class FieldController
+class GameController
+
+Player -->"2" Die
+Player -->"1" Account
+GameController -->"2..4" Player
+GameController -->"1" FieldController
+FieldController -->"24" Field
+GameController -->"1" UIController
+
+class Languages{
+    {static}-currentLocale:Locale
+    {static}-messages:ResourceBundle
+    {static}+setLanguages(languages:String,country:String):void
+    {static}+getMessage(key:String):String
+}
+
 
 
 @enduml
