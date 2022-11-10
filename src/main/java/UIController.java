@@ -14,7 +14,7 @@ public class UIController {
     int last1 = 0;
     int last2 = 0;
 
-    public UIController(Player[] players){
+    public UIController(){
         gui = new GUI(CustomFields());
     }
 
