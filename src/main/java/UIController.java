@@ -1,10 +1,14 @@
 import gui_fields.*;
 import gui_main.GUI;
 
+import java.awt.*;
+
 public class UIController {
 
     GUI gui;
     Languages languages = new Languages();
+
+    GUI_Player[] players;
     GUI_Field[] fields = {
             new GUI_Start(),
             new GUI_Street(),
@@ -32,74 +36,118 @@ public class UIController {
             new GUI_Street()
     };
 
-    GUI_Player player1 = new GUI_Player("Player 1");
-    GUI_Player player2 = new GUI_Player("Player 1");
-    int last1 = 0;
-    int last2 = 0;
-
     public UIController(){
         gui = new GUI(fields);
+
+        String selectLanguages = gui.getUserButtonPressed("Select Language", "English", "Dansk");
+        if(selectLanguages.equals("Dansk")){
+            languages.setLanguages("da","DK");
+        } else{
+            languages.setLanguages("en","US");
+        }
+
+        players = new GUI_Player[2];
+
+        players[0] = new GUI_Player("Player 1", 2000);
+        players[1] = new GUI_Player("Player 2", 1234);
+
+        gui.addPlayer(players[0]);
+        gui.addPlayer(players[1]);
+
+        players[0].getCar().setPrimaryColor(Color.BLUE);
+        players[1].getCar().setPrimaryColor(Color.RED);
+
+        players[0].getCar().setPosition(fields[20]);
+        players[1].getCar().setPosition(fields[5]);
+
+        setInfoFields();
     }
 
-    public GUI_Field[] SetInfoFields(){
+    public void setInfoFields(){
+        Color Brown = new Color(150,75,0);
+        Color Cyan = new Color(0,255,255);
+        Color Pink = new Color(255,20,147);
 
+        fields[0].setTitle(languages.getMessages("Go"));
+        fields[0].setSubText("<----");
 
-        GUI_Street field0 = new GUI_Street();
-        field0.setTitle(languages.getMessages("nameTower"));
-        field0.setSubText("+250");
-        fields[0] = field0;
+        fields[1].setTitle(languages.getMessages("Brown1"));
+        fields[1].setSubText("1");
+        fields[1].setBackGroundColor(Brown);
 
-        GUI_Street field1 = new GUI_Street();
-        field1.setTitle(languages.getMessages("nameCrater"));
-        field1.setSubText("-100");
-        fields[1] = field1;
+        fields[2].setTitle(languages.getMessages("Brown2"));
+        fields[2].setSubText("1");
+        fields[2].setBackGroundColor(Brown);
 
-        GUI_Street field2 = new GUI_Street();
-        field2.setTitle(languages.getMessages("namePalace"));
-        field2.setSubText("+100");
-        fields[2] = field2;
+        fields[3].setSubText(languages.getMessages("Chance"));
 
-        GUI_Street field3 = new GUI_Street();
-        field3.setTitle(languages.getMessages("nameDesert"));
-        field3.setSubText("-20");
-        fields[3] = field3;
+        fields[4].setTitle(languages.getMessages("Cyan1"));
+        fields[4].setSubText("1");
+        fields[4].setBackGroundColor(Cyan);
 
-        GUI_Street field4 = new GUI_Street();
-        field4.setTitle(languages.getMessages("nameCity"));
-        field4.setSubText("+180");
-        fields[4] = field4;
+        fields[5].setTitle(languages.getMessages("Cyan2"));
+        fields[5].setSubText("1");
+        fields[5].setBackGroundColor(Cyan);
 
-        GUI_Street field5 = new GUI_Street();
-        field5.setTitle(languages.getMessages("nameMonastery"));
-        field5.setSubText("0");
-        fields[5] = field5;
+        fields[6].setSubText(languages.getMessages("Visit"));
 
-        GUI_Street field6 = new GUI_Street();
-        field6.setTitle(languages.getMessages("nameCave"));
-        field6.setSubText("-70");
-        fields[6] = field6;
+        fields[7].setTitle(languages.getMessages("Pink1"));
+        fields[7].setSubText("2");
+        fields[7].setBackGroundColor(Pink);
 
-        GUI_Street field7 = new GUI_Street();
-        field7.setTitle(languages.getMessages("nameHut"));
-        field7.setSubText("+60");
-        fields[7] = field7;
+        fields[8].setTitle(languages.getMessages("Pink2"));
+        fields[8].setSubText("2");
+        fields[8].setBackGroundColor(Pink);
 
-        GUI_Street field8 = new GUI_Street();
-        field8.setTitle(languages.getMessages("nameWerewall"));
-        field8.setSubText("-80 +turn");
-        fields[8] = field8;
+        fields[9].setSubText(languages.getMessages("Chance"));
 
-        GUI_Street field9 = new GUI_Street();
-        field9.setTitle(languages.getMessages("namePits"));
-        field9.setSubText("-50");
-        fields[9] = field9;
+        fields[10].setTitle(languages.getMessages("Orange1"));
+        fields[10].setSubText("2");
+        fields[10].setBackGroundColor(Color.ORANGE);
 
-        GUI_Street field10 = new GUI_Street();
-        field10.setTitle(languages.getMessages("nameMine"));
-        field10.setSubText("+650");
-        fields[10] = field10;
+        fields[11].setTitle(languages.getMessages("Orange2"));
+        fields[11].setSubText("2");
+        fields[11].setBackGroundColor(Color.ORANGE);
 
-        return fields;
+        fields[12].setSubText(languages.getMessages("Park"));
+
+        fields[13].setTitle(languages.getMessages("Red1"));
+        fields[13].setSubText("3");
+        fields[13].setBackGroundColor(Color.RED);
+
+        fields[14].setTitle(languages.getMessages("Red2"));
+        fields[14].setSubText("3");
+        fields[14].setBackGroundColor(Color.RED);
+
+        fields[15].setSubText(languages.getMessages("Chance"));
+
+        fields[16].setTitle(languages.getMessages("Yellow1"));
+        fields[16].setSubText("3");
+        fields[16].setBackGroundColor(Color.YELLOW);
+
+        fields[17].setTitle(languages.getMessages("Yellow2"));
+        fields[17].setSubText("3");
+        fields[17].setBackGroundColor(Color.YELLOW);
+
+        fields[18].setSubText(languages.getMessages("GoJail"));
+
+        fields[19].setTitle(languages.getMessages("Green1"));
+        fields[19].setSubText("4");
+        fields[19].setBackGroundColor(Color.GREEN);
+
+        fields[20].setTitle(languages.getMessages("Green2"));
+        fields[20].setSubText("4");
+        fields[20].setBackGroundColor(Color.GREEN);
+
+        fields[21].setSubText(languages.getMessages("Chance"));
+
+        fields[22].setTitle(languages.getMessages("Blue1"));
+        fields[22].setSubText("5");
+        fields[22].setBackGroundColor(Color.BLUE);
+
+        fields[23].setTitle(languages.getMessages("Blue2"));
+        fields[23].setSubText("5");
+        fields[23].setBackGroundColor(Color.BLUE);
     }
 
     public void sendMessage(String text){
@@ -107,16 +155,6 @@ public class UIController {
     }
 
     public void moveCar(int player, int field){
-
-        if(player == 0){
-            fields[last1].setCar(player1,false);
-            fields[field].setCar(player1,true);
-            last1 = field;
-        } else{
-            fields[last2].setCar(player2,false);
-            fields[field].setCar(player2,true);
-            last2 = field;
-        }
-
+        players[player].getCar().setPosition(fields[field]);
     }
 }
