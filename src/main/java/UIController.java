@@ -1,13 +1,36 @@
-import gui_fields.GUI_Field;
-import gui_fields.GUI_Player;
-import gui_fields.GUI_Street;
+import gui_fields.*;
 import gui_main.GUI;
 
 public class UIController {
 
     GUI gui;
     Languages languages = new Languages();
-    GUI_Field[] fields = new GUI_Field[11];
+    GUI_Field[] fields = {
+            new GUI_Start(),
+            new GUI_Street(),
+            new GUI_Street(),
+            new GUI_Chance(),
+            new GUI_Street(),
+            new GUI_Street(),
+            new GUI_Jail(),
+            new GUI_Street(),
+            new GUI_Street(),
+            new GUI_Chance(),
+            new GUI_Street(),
+            new GUI_Street(),
+            new GUI_Refuge(),
+            new GUI_Street(),
+            new GUI_Street(),
+            new GUI_Chance(),
+            new GUI_Street(),
+            new GUI_Street(),
+            new GUI_Jail(),
+            new GUI_Street(),
+            new GUI_Street(),
+            new GUI_Chance(),
+            new GUI_Street(),
+            new GUI_Street()
+    };
 
     GUI_Player player1 = new GUI_Player("Player 1");
     GUI_Player player2 = new GUI_Player("Player 1");
@@ -15,10 +38,10 @@ public class UIController {
     int last2 = 0;
 
     public UIController(){
-        gui = new GUI(CustomFields());
+        gui = new GUI(fields);
     }
 
-    public GUI_Field[] CustomFields(){
+    public GUI_Field[] SetInfoFields(){
 
 
         GUI_Street field0 = new GUI_Street();
