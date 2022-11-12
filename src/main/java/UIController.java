@@ -46,21 +46,11 @@ public class UIController {
             languages.setLanguages("en","US");
         }
 
-        players = new GUI_Player[2];
-
-        players[0] = new GUI_Player("Player 1", 2000);
-        players[1] = new GUI_Player("Player 2", 1234);
-
-        gui.addPlayer(players[0]);
-        gui.addPlayer(players[1]);
-
-        players[0].getCar().setPrimaryColor(Color.BLUE);
-        players[1].getCar().setPrimaryColor(Color.RED);
-
-        players[0].getCar().setPosition(fields[20]);
-        players[1].getCar().setPosition(fields[5]);
-
         setInfoFields();
+
+        addPlayerAmount();
+        /*setBalance(2,30);
+        movePlayer(1,20);*/
     }
 
     public void setInfoFields(){
@@ -156,5 +146,55 @@ public class UIController {
 
     public void moveCar(int player, int field){
         players[player].getCar().setPosition(fields[field]);
+    }
+
+    public int addPlayerAmount(){
+        int amountOfPlayers = gui.getUserInteger(languages.getMessages("ChoosePlayerAmount"),2,4);
+        int money;
+        if(amountOfPlayers == 2){
+            money = 20;
+        } else if(amountOfPlayers == 3){
+            money = 18;
+        } else{
+            money = 16;
+        }
+        players = new GUI_Player[amountOfPlayers];
+
+        for (int i = 0; i < players.length; i++) {
+            players[i] = new GUI_Player(languages.getMessages("Player") + " " + (i+1),money);
+            gui.addPlayer(players[i]);
+            switch (i){
+                case 0:
+                    players[i].getCar().setPrimaryColor(Color.RED);
+                    break;
+                case 1:
+                    players[i].getCar().setPrimaryColor(Color.BLUE);
+                    break;
+                case 2:
+                    players[i].getCar().setPrimaryColor(Color.YELLOW);
+                    break;
+                case 3:
+                    players[i].getCar().setPrimaryColor(Color.GREEN);
+                    break;
+            }
+            players[i].getCar().setPosition(fields[0]);
+        }
+
+        gui.showMessage(languages.getMessages("GameReady"));
+
+        return amountOfPlayers;
+    }
+
+    public void setBalance(int player, int money){
+        players[player].setBalance(money);
+    }
+
+    public void movePlayer(int player, int field){
+        players[player].getCar().setPosition(fields[field]);
+    }
+
+    public  void buyPlot(){
+
+
     }
 }
