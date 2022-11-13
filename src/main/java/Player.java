@@ -1,6 +1,6 @@
 public class Player {
 
-    Konto konto = new Konto();
+    Account konto = new Account();
 
     Die die1 = new Die();
     Die die2 = new Die();

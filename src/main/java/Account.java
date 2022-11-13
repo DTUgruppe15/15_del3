@@ -1,8 +1,6 @@
-public class Konto {
+public class Account {
 
-    //LanguageSelect languageSelect = new LanguageSelect();
-    Languages languages = new Languages();
-    public Konto(){
+    public Account(){
         amountOfMoney = 1000;
     }
 
@@ -21,15 +19,9 @@ public class Konto {
             amountOfMoney += money;
             if(amountOfMoney <= 0){
                 amountOfMoney = 0;
-                System.out.println(languages.getMessages("balanceNull"));
-            } else{
-                System.out.printf(languages.getMessages("balanceNeg"),(money*(-1)));
-                System.out.println();
             }
         } else{
             amountOfMoney += money;
-            System.out.printf(languages.getMessages("balancePos"),money);
-            System.out.println();
         }
     }
 }
