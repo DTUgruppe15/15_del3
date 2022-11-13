@@ -9,7 +9,7 @@ public class UIController {
     Languages languages = new Languages();
 
     GUI_Player[] players;
-    GUI_Field[] fields = {
+    GUI_Field[] fields = { //All fields on the board
             new GUI_Start(),
             new GUI_Street(),
             new GUI_Street(),
@@ -47,11 +47,11 @@ public class UIController {
         }
 
         setInfoFields();
-
-        /*setBalance(2,30);
-        movePlayer(1,20);*/
     }
 
+    /**
+     * This makes all the fields have the text it needs.
+     */
     public void setInfoFields(){
         Color Brown = new Color(150,75,0);
         Color Cyan = new Color(0,255,255);
@@ -162,7 +162,7 @@ public class UIController {
         for (int i = 0; i < players.length; i++) {
             players[i] = new GUI_Player(languages.getMessages("Player") + " " + (i+1),money);
             gui.addPlayer(players[i]);
-            switch (i){
+            switch (i){ //Gives the car a unique color
                 case 0:
                     players[i].getCar().setPrimaryColor(Color.RED);
                     break;
@@ -176,7 +176,7 @@ public class UIController {
                     players[i].getCar().setPrimaryColor(Color.GREEN);
                     break;
             }
-            players[i].getCar().setPosition(fields[0]);
+            players[i].getCar().setPosition(fields[0]); //Set all cars initial position on GO
         }
 
         gui.showMessage(languages.getMessages("GameReady"));
