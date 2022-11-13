@@ -50,12 +50,13 @@ GameController -->"2..4" Player
 GameController -->"1" FieldController
 FieldController -->"24" Field
 GameController -->"1" UIController
+UIController -->"1" Languages
 
 class Languages{
     {static}-currentLocale:Locale
     {static}-messages:ResourceBundle
     {static}+setLanguages(languages:String,country:String):void
-    {static}+getMessage(key:String):String
+    +getMessage(key:String):String
 }
 
 

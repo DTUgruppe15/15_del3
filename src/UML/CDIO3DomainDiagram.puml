@@ -20,7 +20,7 @@ Field <|-- GoToPrison
 Field <|-- Parking
 Field <|-- Plot
 
-class UI{
+class UIController{
     gui
 }
 class Player{
@@ -38,8 +38,9 @@ class Game
 Player "1"--"2" Die
 Player "1"--"1" Account
 Game "1"--"2..4" Player
-Game "1"--"24" Field
-Game "1"--"1" UI
+Game "1"-"24" Field
+Game "1"--"1" UIController
+UIController "1"--"1" Languages
 
 class Languages{
 
