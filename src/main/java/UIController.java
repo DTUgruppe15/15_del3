@@ -48,7 +48,6 @@ public class UIController {
 
         setInfoFields();
 
-        addPlayerAmount();
         /*setBalance(2,30);
         movePlayer(1,20);*/
     }
@@ -196,5 +195,16 @@ public class UIController {
     public  void buyPlot(){
 
 
+    }
+
+    public void chooseAction(int player){
+        String chosenButton = gui.getUserButtonPressed(
+                languages.getMessages("Player") + " "  + (player+1) + " " + languages.getMessages("RollButton"),
+                languages.getMessages("Roll")
+        );
+    }
+
+    public void setDice(int die1, int die2){
+        gui.setDice(die1, die2);
     }
 }
