@@ -30,9 +30,14 @@ class Player{
     -die1:Die
     -die2:Die
     -account:Account
+    -position:int
     +rollDice():void
     +getDiceSum():int
 }
+class ChanceCard{
+
+}
+
 class Account{
     -money:int
 }
@@ -41,7 +46,9 @@ class Die{
     -amountOfFaces:int
     +rollDie():void
 }
-class FieldController
+class FieldController {
+    -fields:Field[]
+}
 class GameController
 
 Player -->"2" Die
@@ -51,6 +58,7 @@ GameController -->"1" FieldController
 FieldController -->"24" Field
 GameController -->"1" UIController
 UIController -->"1" Languages
+Chance -->"20" ChanceCard
 
 class Languages{
     {static}-currentLocale:Locale
@@ -58,7 +66,5 @@ class Languages{
     {static}+setLanguages(languages:String,country:String):void
     +getMessage(key:String):String
 }
-
-
 
 @enduml
