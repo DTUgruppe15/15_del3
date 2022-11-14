@@ -4,13 +4,22 @@
 autonumber
 
 [->GameController:Start
-GameController -> Player:Create
-Player -> Die:Create
-loop win==false
-    alt roll dice
-        Player -> Die:Roll
+GameController -> Player:Create 2-4
+Player -> Die:Create 2
+loop gameActive=true
+    Player -> Die:Roll
+
+    alt Pay Rent
+        Player -> Player:Pay other player
     else Buy field
-        Player -> Bank
+        Player -> Bank:Give money
+        Bank -> Player:Give plot
+    else Chance Card
+        Player -> Chance:Draw Card
+        Chance -> Player:Stuff happens
+    else Go to Jail
+        Player -> Player:Go to Jail
+    end
 end
 Player -> GameController:Win Message
 
