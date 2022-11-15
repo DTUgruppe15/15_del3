@@ -207,4 +207,8 @@ public class UIController {
     public void setDice(int die1, int die2){
         gui.setDice(die1, die2);
     }
+
+    public void setDie(int die){
+        gui.setDie(die);
+    }
 }

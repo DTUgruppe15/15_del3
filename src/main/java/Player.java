@@ -1,9 +1,13 @@
 public class Player {
 
-    Account konto = new Account();
+    Account account;
+
+    public Player(int money){
+        account = new Account(money);
+    }
 
     Die die1 = new Die();
-    Die die2 = new Die();
+    //Die die2 = new Die();
 
     private int position = 0;
 
@@ -13,11 +17,11 @@ public class Player {
 
     public void rollDice(){
         die1.rollDie();
-        die2.rollDie();
+        //die2.rollDie();
     }
 
     public int sumOfDice(){
-        return die1.getFaceValue()+die2.getFaceValue();
+        return die1.getFaceValue();//+die2.getFaceValue();
     }
 
     public boolean useGetOutOfJailCard(){
@@ -39,5 +43,20 @@ public class Player {
 
     public boolean isInJail(){
         return inJail;
+    }
+
+    public int getPosition(){
+        return position;
+    }
+
+    public void setPosition(int position){
+        this.position = position;
+    }
+
+    public void updatePosition(){
+        position += sumOfDice();
+        if(position>23){
+            position -= 24;
+        }
     }
 }

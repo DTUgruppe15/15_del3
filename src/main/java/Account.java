@@ -1,7 +1,7 @@
 public class Account {
 
-    public Account(){
-        amountOfMoney = 1000;
+    public Account(int money){
+        amountOfMoney = money;
     }
 
     private int amountOfMoney;
