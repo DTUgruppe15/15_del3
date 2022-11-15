@@ -9,9 +9,9 @@ public class TurnController {
     }
 
     public void nextPlayer(){
-        if(extraTurn == false) {
+        if(extraTurn == false) { //Future proofing extra turn
             playerTurn++;
-            if (playerTurn >= amountOfPlayers) {
+            if (playerTurn >= amountOfPlayers) { //Return to first player if it was the last players turn
                 playerTurn = 0;
             }
         } else{
