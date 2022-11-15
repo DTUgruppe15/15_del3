@@ -188,10 +188,6 @@ public class UIController {
         players[player].setBalance(money);
     }
 
-    public void movePlayer(int player, int field){
-        players[player].getCar().setPosition(fields[field]);
-    }
-
     public  void buyPlot(){
 
 

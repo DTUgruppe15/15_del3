@@ -56,7 +56,12 @@ public class Player {
     public void updatePosition(){
         position += sumOfDice();
         if(position>23){
+            account.changeBalance(2);
             position -= 24;
         }
+    }
+
+    public int getMoney(){
+        return account.getAmountOfMoney();
     }
 }

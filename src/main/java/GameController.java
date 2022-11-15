@@ -43,8 +43,9 @@ public class GameController {
 
 
             
-
+            uiController.setBalance(turnController.getPlayerTurn(),players[turnController.getPlayerTurn()].getMoney());
             turnController.nextPlayer();
         }
+        //win condition
     }
 }
