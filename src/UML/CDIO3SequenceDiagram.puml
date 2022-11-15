@@ -5,7 +5,7 @@ autonumber
 
 [->GameController:Start
 GameController -> Player:Create 2-4
-Player -> Die:Create 2
+Player -> Die:Create 1
 loop gameActive=true
     Player -> Die:Roll
 

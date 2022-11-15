@@ -29,7 +29,6 @@ class UIController{
 }
 class Player{
     -die1:Die
-    -die2:Die
     -account:Account
     -position:int
     +rollDice():void
@@ -52,7 +51,7 @@ class FieldController {
 }
 class GameController
 
-Player -->"2" Die
+Player -->"1" Die
 Player -->"1" Account
 GameController -->"2..4" Player
 GameController -->"1" FieldController
