@@ -2,6 +2,7 @@ public class GameController {
 
     UIController uiController;
     TurnController turnController;
+    FieldController fieldController;
 
     private int amountOfPlayers;
 
@@ -29,6 +30,7 @@ public class GameController {
         for (int i = 0; i < amountOfPlayers; i++) {
             players[i] = new Player(money);
         }
+        fieldController = new FieldController(players, uiController);
 
         boolean gameActive = true;
 
@@ -41,7 +43,7 @@ public class GameController {
             players[turnController.getPlayerTurn()].updatePosition();
             uiController.moveCar(turnController.getPlayerTurn(),players[turnController.getPlayerTurn()].getPosition());
 
-
+            fieldController.landOnField(players[turnController.getPlayerTurn()].getPosition());
             
             uiController.setBalance(turnController.getPlayerTurn(),players[turnController.getPlayerTurn()].getMoney());
             turnController.nextPlayer();
