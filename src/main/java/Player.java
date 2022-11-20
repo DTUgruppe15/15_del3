@@ -64,4 +64,16 @@ public class Player {
     public int getMoney(){
         return account.getAmountOfMoney();
     }
+
+    public void movePosition(int amount){
+        position += amount;
+        if(position>23){
+            account.changeBalance(2);
+            position -= 24;
+        }
+    }
+
+    public void addGetOutOfJail(){
+        getOutOfJail++;
+    }
 }

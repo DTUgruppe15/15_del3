@@ -207,4 +207,8 @@ public class UIController {
     public void setDie(int die){
         gui.setDie(die);
     }
+
+    public Languages getLanguages(){ //Past mistakes make spaghetti code
+        return languages;
+    }
 }
