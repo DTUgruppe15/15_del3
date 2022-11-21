@@ -13,7 +13,7 @@ public class Chance {
         this.languages = languages;
     }
 
-
+    public Chance(){}
 
     public void drawCard(int playerTurn){
         switch (random.nextInt(16)){

@@ -14,7 +14,7 @@ public class FieldController {
     }
 
     public void landOnField(int field, int playerTurn){
-        switch (field){
+        switch(field){
             case 3:
             case 9:
             case 15:
@@ -23,7 +23,4 @@ public class FieldController {
                 break;
         }
     }
-
-
-
 }
