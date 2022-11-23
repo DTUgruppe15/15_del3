@@ -188,9 +188,11 @@ public class UIController {
         players[player].setBalance(money);
     }
 
-    public  void buyPlot(){
-
-
+    //Change the color of a plots border to the ownable player car's colour
+    public void buyPlot(int position, int player) {
+        GUI_Field field = gui.getFields()[position];
+        GUI_Ownable ownable = (GUI_Ownable) field;
+        ownable.setBorder(players[player].getCar().getPrimaryColor());
     }
 
     public void chooseAction(int player){
