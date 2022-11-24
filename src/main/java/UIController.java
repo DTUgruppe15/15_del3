@@ -213,4 +213,22 @@ public class UIController {
     public Languages getLanguages(){ //Past mistakes make spaghetti code
         return languages;
     }
+
+    public String chooseActionJail(int player,boolean hasCard){
+        String chosenButton;
+        if(hasCard == true){
+            chosenButton = gui.getUserSelection(
+                    languages.getMessages("Player") + " "  + (player+1) + " " + languages.getMessages("inJail"), languages.getMessages("JailPay"), languages.getMessages("JailCard")
+            );
+        } else{
+            chosenButton = gui.getUserSelection(
+                    languages.getMessages("Player") + " "  + (player+1) + " " + languages.getMessages("inJail"), languages.getMessages("JailPay")
+            );
+        }
+        if(chosenButton == languages.getMessages("JailCard")){
+            return "CardUsed";
+        }else{
+            return "Pay";
+        }
+    }
 }

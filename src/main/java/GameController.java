@@ -41,43 +41,57 @@ public class GameController {
         fieldController = new FieldController(players, uiController, uiController.getLanguages(), plot);
 
         while(gameActive == true) {
-            uiController.chooseAction(turnController.getPlayerTurn());
-
-            players[turnController.getPlayerTurn()].rollDice();
-
-            uiController.setDie(players[turnController.getPlayerTurn()].die1.getFaceValue());
-            players[turnController.getPlayerTurn()].updatePosition();
-            uiController.moveCar(turnController.getPlayerTurn(),players[turnController.getPlayerTurn()].getPosition());
-
-            fieldController.landOnField(players[turnController.getPlayerTurn()].getPosition(),turnController.getPlayerTurn());
-
-            //*******************
-            //Controls the plots
-            //*******************
-
-            //If plot is not owned by a player - when player lands on that plot - , then this changes the bordercolour of that plot to the colour of the player.
-            if(plot.isPlotNotOwned(players[turnController.getPlayerTurn()].getPosition())) {
-                uiController.buyPlot(players[turnController.getPlayerTurn()].getPosition(), turnController.getPlayerTurn());
+            System.out.println((turnController.getPlayerTurn()+1) + " " + players[turnController.getPlayerTurn()].hasGetOutOfJailCard());
+            if(players[turnController.getPlayerTurn()].isInJail()){
+                String choice = uiController.chooseActionJail(turnController.getPlayerTurn(), players[turnController.getPlayerTurn()].hasGetOutOfJailCard());
+                players[turnController.getPlayerTurn()].setInJail(false);
+                if(choice=="CardUsed"){
+                    players[turnController.getPlayerTurn()].useGetOutOfJail();
+                } else{
+                    players[turnController.getPlayerTurn()].account.changeBalance(-1);
+                    uiController.setBalance(turnController.getPlayerTurn(), players[turnController.getPlayerTurn()].getMoney());
+                }
             }
 
-            //Removes money from the player.
-            int a = plot.moneyToBePaid(players[turnController.getPlayerTurn()].getPosition(), turnController.getPlayerTurn());
-            players[turnController.getPlayerTurn()].account.changeBalance(-a);
+            if(!players[turnController.getPlayerTurn()].isInJail()) {
+                uiController.chooseAction(turnController.getPlayerTurn());
 
-            //Adds money to the balance of the player that owns the plot when someone else lands on it.
-            int b = plot.getPlotStatus(players[turnController.getPlayerTurn()].getPosition(), 1);
-            if(b != (turnController.getPlayerTurn() + 1) && plot.canPlotBeBought(players[turnController.getPlayerTurn()].getPosition())) {
-                players[(b-1)].account.changeBalance(a);
+                players[turnController.getPlayerTurn()].rollDice();
+
+                uiController.setDie(players[turnController.getPlayerTurn()].die1.getFaceValue());
+                players[turnController.getPlayerTurn()].updatePosition();
+                uiController.moveCar(turnController.getPlayerTurn(), players[turnController.getPlayerTurn()].getPosition());
+
+                fieldController.landOnField(players[turnController.getPlayerTurn()].getPosition(), turnController.getPlayerTurn());
+
+                //*******************
+                //Controls the plots
+                //*******************
+
+                //If plot is not owned by a player - when player lands on that plot - , then this changes the bordercolour of that plot to the colour of the player.
+                if (plot.isPlotNotOwned(players[turnController.getPlayerTurn()].getPosition())) {
+                    uiController.buyPlot(players[turnController.getPlayerTurn()].getPosition(), turnController.getPlayerTurn());
+                }
+
+                //Removes money from the player.
+                int a = plot.moneyToBePaid(players[turnController.getPlayerTurn()].getPosition(), turnController.getPlayerTurn());
+                players[turnController.getPlayerTurn()].account.changeBalance(-a);
+
+                //Adds money to the balance of the player that owns the plot when someone else lands on it.
+                int b = plot.getPlotStatus(players[turnController.getPlayerTurn()].getPosition(), 1);
+                if (b != (turnController.getPlayerTurn() + 1) && plot.canPlotBeBought(players[turnController.getPlayerTurn()].getPosition())) {
+                    players[(b - 1)].account.changeBalance(a);
+                    //Updates the UI-balance
+                    uiController.setBalance((b - 1), players[(b - 1)].getMoney());
+                }
+
                 //Updates the UI-balance
-                uiController.setBalance((b-1), players[(b-1)].getMoney());
-            }
+                uiController.setBalance(turnController.getPlayerTurn(), players[turnController.getPlayerTurn()].getMoney());
 
-            //Updates the UI-balance
-            uiController.setBalance(turnController.getPlayerTurn(),players[turnController.getPlayerTurn()].getMoney());
-
-            //Breaks out of the while-loop, if a players money reaches 0.
-            if(players[turnController.getPlayerTurn()].getMoney() == 0) {
-                break;
+                //Breaks out of the while-loop, if a players money reaches 0.
+                if (players[turnController.getPlayerTurn()].getMoney() == 0) {
+                    break;
+                }
             }
 
             turnController.nextPlayer();

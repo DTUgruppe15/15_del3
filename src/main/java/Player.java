@@ -76,4 +76,12 @@ public class Player {
     public void addGetOutOfJail(){
         getOutOfJail++;
     }
+
+    public void setInJail(boolean inJail) {
+        this.inJail = inJail;
+    }
+
+    public void useGetOutOfJail(){
+        getOutOfJail--;
+    }
 }

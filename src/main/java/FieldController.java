@@ -1,17 +1,13 @@
 public class FieldController {
 
     Player[] players;
-    UIController uiController;
-    Languages languages;
     Chance chance;
-    Plot plot;
+    GoToJail goToJail;
 
     public FieldController(Player[] players, UIController uiController, Languages languages, Plot plot){
         this.players = players;
-        this.uiController = uiController;
-        this.languages = languages;
-        this.plot = plot;
         chance = new Chance(players, uiController, languages, plot);
+        goToJail = new GoToJail(uiController);
     }
 
     public void landOnField(int field, int playerTurn){
@@ -22,6 +18,10 @@ public class FieldController {
             case 21:
                 chance.drawCard(playerTurn);
                 break;
+            case 18:
+                goToJail.goToJail(players[playerTurn],playerTurn);
+                break;
+
         }
     }
 }
