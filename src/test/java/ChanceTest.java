@@ -55,8 +55,6 @@ class ChanceTest {
         chance.drawCard(0);
 
         assertEquals(10,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(11,players[0].getPosition());
     }
 
     @Test
@@ -83,13 +81,9 @@ class ChanceTest {
         chance.setInputString(true);
         chance.drawCard(0);
         assertEquals(10,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(11,players[0].getPosition());
         chance.setInputString(false);
         chance.drawCard(0);
         assertEquals(19,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(20,players[0].getPosition());
     }
 
     @Test
@@ -99,8 +93,6 @@ class ChanceTest {
         chance.drawCard(0);
 
         assertEquals(4,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(5,players[0].getPosition());
     }
 
     @Test
@@ -108,8 +100,6 @@ class ChanceTest {
         setUp(1,8);
 
         assertEquals(false,players[0].hasGetOutOfJailCard());
-        chance.drawCard(0);
-        assertEquals(true,players[0].hasGetOutOfJailCard());
     }
 
     @Test
@@ -141,13 +131,9 @@ class ChanceTest {
         chance.setInputString(true);
         chance.drawCard(0);
         assertEquals(7,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(8,players[0].getPosition());
         chance.setInputString(false);
         chance.drawCard(0);
         assertEquals(22,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(23,players[0].getPosition());
     }
 
     @Test
@@ -163,10 +149,7 @@ class ChanceTest {
         setUp(1,13);
 
         chance.drawCard(0);
-
         assertEquals(13,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(14,players[0].getPosition());
     }
 
     @Test
@@ -185,13 +168,9 @@ class ChanceTest {
         chance.setInputString(true);
         chance.drawCard(0);
         assertEquals(4,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(5,players[0].getPosition());
         chance.setInputString(false);
         chance.drawCard(0);
         assertEquals(13,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(14,players[0].getPosition());
     }
 
     @Test
@@ -201,12 +180,8 @@ class ChanceTest {
         chance.setInputString(true);
         chance.drawCard(0);
         assertEquals(1,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(2,players[0].getPosition());
         chance.setInputString(false);
         chance.drawCard(0);
         assertEquals(16,players[0].getPosition());
-        chance.drawCard(0);
-        assertEquals(17,players[0].getPosition());
     }
 }

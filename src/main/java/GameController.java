@@ -33,12 +33,12 @@ public class GameController {
         for (int i = 0; i < amountOfPlayers; i++) {
             players[i] = new Player(money);
         }
-        fieldController = new FieldController(players, uiController, uiController.getLanguages());
+
 
         //Constructs the plot-array
         plot.instantiation();
         boolean gameActive = true;
-
+        fieldController = new FieldController(players, uiController, uiController.getLanguages(), plot);
 
         while(gameActive == true) {
             uiController.chooseAction(turnController.getPlayerTurn());
@@ -91,6 +91,7 @@ public class GameController {
                 prevMoney = players[i].getMoney();
             }
         }
-        System.out.println("The winner of the game is player: " + player + " with " + prevMoney + " money");
+        uiController.sendMessage("The winner of the game is player: " + player + " with " + prevMoney + " money");
+        //System.out.println("The winner of the game is player: " + player + " with " + prevMoney + " money");
     }
 }

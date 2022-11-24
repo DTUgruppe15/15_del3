@@ -6,11 +6,13 @@ public class Chance {
     UIController uiController;
     Languages languages;
     Random random = new Random();
+    Plot plot;
 
-    public Chance(Player[] players, UIController uiController, Languages languages){
+    public Chance(Player[] players, UIController uiController, Languages languages, Plot plot){
         this.players = players;
         this.uiController = uiController;
         this.languages = languages;
+        this.plot = plot;
     }
 
     public Chance(){}
@@ -28,14 +30,13 @@ public class Chance {
                 players[playerTurn].movePosition(uiController.gui.getUserInteger(languages.getMessages("Chance2"),1,5));
                 uiController.moveCar(playerTurn,players[playerTurn].getPosition());
                 break;
-            case 2: //Need buy plot to function
+            case 2:
                 uiController.sendMessage(languages.getMessages("Chance3"));
-                if(players[playerTurn].getPosition()==10){
-                    players[playerTurn].setPosition(11);
-                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                }else{
-                    players[playerTurn].setPosition(10);
-                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                players[playerTurn].setPosition(10);
+                uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
                 }
                 break;
             case 3:
@@ -51,33 +52,26 @@ public class Chance {
                 players[playerTurn].account.changeBalance(-2);
                 uiController.setBalance(playerTurn,players[playerTurn].getMoney());
                 break;
-            case 5: //Need buy plot to function
+            case 5:
                 if(uiController.gui.getUserSelection(languages.getMessages("Chance6"), languages.getMessages("Chance6choice1"), languages.getMessages("Chance6choice2"))== languages.getMessages("Chance6choice1")){
-                    if(players[playerTurn].getPosition()==10){
-                        players[playerTurn].setPosition(11);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(10);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
+                    players[playerTurn].setPosition(10);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
                 } else{
-                    if(players[playerTurn].getPosition()==19){
-                        players[playerTurn].setPosition(20);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(19);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
+                    players[playerTurn].setPosition(19);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                }
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
                 }
                 break;
-            case 6: //Need buy plot to function
+            case 6:
                 uiController.sendMessage(languages.getMessages("Chance7"));
-                if(players[playerTurn].getPosition()==4){
-                    players[playerTurn].setPosition(5);
-                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                }else{
-                    players[playerTurn].setPosition(4);
-                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                players[playerTurn].setPosition(4);
+                uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
                 }
                 break;
             case 7:
@@ -98,23 +92,17 @@ public class Chance {
                     }
                 }
                 break;
-            case 10: //Need buy plot to function
+            case 10:
                 if(uiController.gui.getUserSelection(languages.getMessages("Chance11"), languages.getMessages("Chance11choice1"), languages.getMessages("Chance11choice2"))== languages.getMessages("Chance11choice1")){
-                    if(players[playerTurn].getPosition()==7){
-                        players[playerTurn].setPosition(8);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(7);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
+                    players[playerTurn].setPosition(7);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
                 } else{
-                    if(players[playerTurn].getPosition()==22){
-                        players[playerTurn].setPosition(23);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(22);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
+                    players[playerTurn].setPosition(22);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                }
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
                 }
                 break;
             case 11:
@@ -122,57 +110,48 @@ public class Chance {
                 players[playerTurn].account.changeBalance(2);
                 uiController.setBalance(playerTurn,players[playerTurn].getMoney());
                 break;
-            case 12: //Need buy plot to function
+            case 12:
                 uiController.sendMessage(languages.getMessages("Chance13"));
-                if(players[playerTurn].getPosition()==13){
-                    players[playerTurn].setPosition(14);
-                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                }else{
-                    players[playerTurn].setPosition(13);
-                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                players[playerTurn].setPosition(13);
+                uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
                 }
                 break;
-            case 13: //Need buy plot to function
+            case 13:
                 uiController.sendMessage(languages.getMessages("Chance14"));
                 players[playerTurn].setPosition(10);
                 uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                break;
-            case 14: //Need buy plot to function
-                if(uiController.gui.getUserSelection(languages.getMessages("Chance15"), languages.getMessages("Chance15choice1"), languages.getMessages("Chance15choice2"))== languages.getMessages("Chance15choice1")){
-                    if(players[playerTurn].getPosition()==4){
-                        players[playerTurn].setPosition(5);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(4);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
-                } else{
-                    if(players[playerTurn].getPosition()==13){
-                        players[playerTurn].setPosition(14);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(13);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
                 }
                 break;
-            case 15: //Need buy plot to function
-                if(uiController.gui.getUserSelection(languages.getMessages("Chance16"), languages.getMessages("Chance16choice1"), languages.getMessages("Chance16choice2"))== languages.getMessages("Chance16choice1")){
-                    if(players[playerTurn].getPosition()==1){
-                        players[playerTurn].setPosition(2);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(1);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
+            case 14:
+                if(uiController.gui.getUserSelection(languages.getMessages("Chance15"), languages.getMessages("Chance15choice1"), languages.getMessages("Chance15choice2"))== languages.getMessages("Chance15choice1")){
+                    players[playerTurn].setPosition(4);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
                 } else{
-                    if(players[playerTurn].getPosition()==16){
-                        players[playerTurn].setPosition(17);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }else{
-                        players[playerTurn].setPosition(16);
-                        uiController.moveCar(playerTurn,players[playerTurn].getPosition());
-                    }
+                    players[playerTurn].setPosition(13);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                }
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
+                }
+                break;
+            case 15:
+                if(uiController.gui.getUserSelection(languages.getMessages("Chance16"), languages.getMessages("Chance16choice1"), languages.getMessages("Chance16choice2"))== languages.getMessages("Chance16choice1")){
+                    players[playerTurn].setPosition(1);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                } else{
+                    players[playerTurn].setPosition(16);
+                    uiController.moveCar(playerTurn,players[playerTurn].getPosition());
+                }
+                if(plot.isPlotNotOwned(players[playerTurn].getPosition())){
+                    plot.claimPlot(players[playerTurn].getPosition(),playerTurn);
+                    uiController.buyPlot(players[playerTurn].getPosition(),playerTurn);
                 }
                 break;
         }

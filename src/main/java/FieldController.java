@@ -3,14 +3,15 @@ public class FieldController {
     Player[] players;
     UIController uiController;
     Languages languages;
-
     Chance chance;
+    Plot plot;
 
-    public FieldController(Player[] players, UIController uiController, Languages languages){
+    public FieldController(Player[] players, UIController uiController, Languages languages, Plot plot){
         this.players = players;
         this.uiController = uiController;
         this.languages = languages;
-        chance = new Chance(players, uiController, languages);
+        this.plot = plot;
+        chance = new Chance(players, uiController, languages, plot);
     }
 
     public void landOnField(int field, int playerTurn){

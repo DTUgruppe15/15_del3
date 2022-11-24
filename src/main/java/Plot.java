@@ -61,17 +61,17 @@ public class Plot {
         //If the plot is not owned, then the player pays the rent and gets ownership.
         if(isPlotNotOwned(position)) {
             claimPlot(position, player);
-            System.out.println("Plot have been claimed by " + (player+1));
+            //System.out.println("Plot have been claimed by " + (player+1));
             return plotStatus[position][2];
         }
         //Nothing happens if the player already owns that plot.
         else if(isPlotOwnedByPlayer(position, player)) {
-            System.out.println("Plot already owned by player");
+            //System.out.println("Plot already owned by player");
             return 0;
         }
         //Player pays rent to the player with the ownership.
         else {
-            System.out.println("Player "+ (player+1) + " payed " + plotStatus[position][2]);
+            //System.out.println("Player "+ (player+1) + " payed " + plotStatus[position][2]);
             return plotStatus[position][2];
         }
     }

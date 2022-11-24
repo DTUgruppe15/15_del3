@@ -38,11 +38,7 @@ public class ChanceStub extends Chance{
                 players[playerTurn].movePosition(inputInt);
                 break;
             case 2: //Need buy plot to function
-                if(players[playerTurn].getPosition()==10){
-                    players[playerTurn].setPosition(11);
-                }else{
-                    players[playerTurn].setPosition(10);
-                }
+                players[playerTurn].setPosition(10);
                 break;
             case 3:
                 if(inputString){
@@ -56,25 +52,13 @@ public class ChanceStub extends Chance{
                 break;
             case 5: //Need buy plot to function
                 if(inputString){
-                    if(players[playerTurn].getPosition()==10){
-                        players[playerTurn].setPosition(11);
-                    }else{
-                        players[playerTurn].setPosition(10);
-                    }
+                    players[playerTurn].setPosition(10);
                 } else{
-                    if(players[playerTurn].getPosition()==19){
-                        players[playerTurn].setPosition(20);
-                    }else{
-                        players[playerTurn].setPosition(19);
-                    }
+                    players[playerTurn].setPosition(19);
                 }
                 break;
             case 6: //Need buy plot to function
-                if(players[playerTurn].getPosition()==4){
-                    players[playerTurn].setPosition(5);
-                }else{
-                    players[playerTurn].setPosition(4);
-                }
+                players[playerTurn].setPosition(4);
                 break;
             case 7:
                 players[playerTurn].addGetOutOfJail();
@@ -92,60 +76,32 @@ public class ChanceStub extends Chance{
                 break;
             case 10: //Need buy plot to function
                 if(inputString){
-                    if(players[playerTurn].getPosition()==7){
-                        players[playerTurn].setPosition(8);
-                    }else{
-                        players[playerTurn].setPosition(7);
-                    }
+                    players[playerTurn].setPosition(7);
                 } else{
-                    if(players[playerTurn].getPosition()==22){
-                        players[playerTurn].setPosition(23);
-                    }else{
-                        players[playerTurn].setPosition(22);
-                    }
+                    players[playerTurn].setPosition(22);
                 }
                 break;
             case 11:
                 players[playerTurn].account.changeBalance(2);
                 break;
             case 12: //Need buy plot to function
-                if(players[playerTurn].getPosition()==13){
-                    players[playerTurn].setPosition(14);
-                }else{
-                    players[playerTurn].setPosition(13);
-                }
+                players[playerTurn].setPosition(13);
                 break;
             case 13: //Need buy plot to function
                 players[playerTurn].setPosition(10);
                 break;
             case 14: //Need buy plot to function
                 if(inputString){
-                    if(players[playerTurn].getPosition()==4){
-                        players[playerTurn].setPosition(5);
-                    }else{
-                        players[playerTurn].setPosition(4);
-                    }
+                    players[playerTurn].setPosition(4);
                 } else{
-                    if(players[playerTurn].getPosition()==13){
-                        players[playerTurn].setPosition(14);
-                    }else{
-                        players[playerTurn].setPosition(13);
-                    }
+                    players[playerTurn].setPosition(13);
                 }
                 break;
             case 15: //Need buy plot to function
                 if(inputString){
-                    if(players[playerTurn].getPosition()==1){
-                        players[playerTurn].setPosition(2);
-                    }else{
-                        players[playerTurn].setPosition(1);
-                    }
+                    players[playerTurn].setPosition(1);
                 } else{
-                    if(players[playerTurn].getPosition()==16){
-                        players[playerTurn].setPosition(17);
-                    }else{
-                        players[playerTurn].setPosition(16);
-                    }
+                    players[playerTurn].setPosition(16);
                 }
                 break;
         }
