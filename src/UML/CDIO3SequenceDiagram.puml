@@ -5,20 +5,20 @@ autonumber
 
 [->GameController:Start
 GameController -> Player:Create 2-4
-Player -> Die:Create 2
+Player -> Die:Create
 loop gameActive=true
-    Player -> Die:Roll
+    Player -> Die:rollDie()
 
     alt Pay Rent
-        Player -> Player:Pay other player
+        Player -> Player:Pay other player - changeBalance()
     else Buy field
-        Player -> Bank:Give money
-        Bank -> Player:Give plot
+        Player -> Bank:changeBalance()
+        Bank -> Player:claimPlot()
     else Chance Card
-        Player -> Chance:Draw Card
+        Player -> Chance:drawCard()
         Chance -> Player:Stuff happens
     else Go to Jail
-        Player -> Player:Go to Jail
+        Player -> Player:setInJail()
     end
 end
 Player -> GameController:Win Message
